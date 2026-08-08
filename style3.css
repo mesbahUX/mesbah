@@ -383,10 +383,11 @@ body {
 .main-layout {
     width: 100%;
     display: grid;
-    grid-template-columns: 220px 1fr 240px;
+    grid-template-columns: 220px minmax(0, 1fr) 240px;
     gap: 25px;
     padding: 50px;
     background: #f5f6f5;
+    box-sizing: border-box;
 }
 
 /*======================================
@@ -486,119 +487,354 @@ body {
     box-shadow: none;
 }
 
-/*======================================
-    AI PAGE
-=======================================*/
+/*======================================*
+* AI PAGE
+*=======================================*/
 
-.ai-chat {
-    width: min(900px,95%);
-}
+/* ---------- Main AI Layout ---------- */
 
 .ai-layout {
     display: grid;
-    grid-template-columns: 160px 1fr;
-    gap: 30px;
-    min-height: 75vh;
+    grid-template-columns: clamp(150px, 13vw, 210px) minmax(0, 1fr);
+    gap: clamp(16px, 2.5vw, 35px);
+
+    min-height: clamp(550px, 75vh, 850px);
+
+    width: 100%;
 }
+
+
+/* ---------- Chat Sidebar ---------- */
 
 .chat-sidebar {
     background: var(--white);
-    border-radius: 20px;
-    padding: 20px;
+
+    border-radius: clamp(14px, 1.5vw, 20px);
+
+    padding: clamp(14px, 1.5vw, 22px);
+
     box-shadow: 0 8px 20px rgba(0,0,0,.08);
+
+    min-width: 0;
 }
+
 
 .new-chat {
     width: 100%;
-    height: 48px;
+
+    height: clamp(40px, 3vw, 48px);
+
     border: none;
-    border-radius: 12px;
+    border-radius: clamp(9px, 1vw, 12px);
+
     background: var(--primary);
     color: var(--white);
+
     cursor: pointer;
-    margin-bottom: 25px;
-    font-size: var(--fs-sm);
+
+    margin-bottom: clamp(18px, 2vw, 25px);
+
+    font-size: clamp(12px, 0.9vw, 15px);
+
+    white-space: nowrap;
 }
 
-.chat-item {
-    padding: 12px 15px;
-    border-radius: 10px;
-    cursor: pointer;
-    margin-bottom: 8px;
-    transition: .3s;
-    font-size: var(--fs-sm);
+
+.chat-sidebar h4 {
+    font-size: clamp(11px, 0.8vw, 14px);
+
+    margin-top: clamp(14px, 1.5vw, 20px);
+    margin-bottom: clamp(7px, 0.8vw, 10px);
+
+    color: var(--text-light);
 }
+
+
+.chat-item {
+    padding: clamp(9px, 0.8vw, 13px)
+             clamp(10px, 1vw, 15px);
+
+    border-radius: clamp(8px, 0.8vw, 10px);
+
+    cursor: pointer;
+
+    margin-bottom: clamp(5px, 0.6vw, 8px);
+
+    transition: .3s;
+
+    font-size: clamp(12px, 0.9vw, 15px);
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 
 .chat-item:hover {
     background: var(--background);
 }
+
 
 .chat-item.active {
     background: var(--primary);
     color: var(--white);
 }
 
-.ai-response {
-    background: var(--white);
-    border-radius: 18px;
-    padding: 25px;
-    margin-bottom: 25px;
-    box-shadow: 0 8px 20px rgba(0,0,0,.08);
+
+/* ---------- AI Main Area ---------- */
+
+.ai-layout .dashboard-page {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
 }
+
+
+.ai-layout .dashboard-title {
+    font-size: clamp(20px, 1.8vw, 30px);
+
+    margin-bottom: clamp(18px, 2vw, 30px);
+}
+
+
+/* ---------- Chat Area ---------- */
+
+#ai-chat {
+    width: min(900px, 100%);
+
+    margin-inline: auto;
+
+    flex: 1;
+
+    min-height: clamp(300px, 45vh, 600px);
+
+    overflow-y: auto;
+
+    padding: clamp(5px, 1vw, 15px);
+}
+
+
+/* ---------- AI Response ---------- */
+
+.ai-response {
+    width: 100%;
+
+    background: var(--white);
+
+    border-radius: clamp(13px, 1.5vw, 18px);
+
+    padding: clamp(16px, 2vw, 25px);
+
+    margin-bottom: clamp(16px, 2vw, 25px);
+
+    box-shadow: 0 8px 20px rgba(0,0,0,.08);
+
+    line-height: 1.8;
+}
+
 
 .ai-response h2,
 .ai-response h3 {
-    font-size: var(--fs-lg);
+    font-size: clamp(18px, 1.5vw, 24px);
+
+    margin-bottom: clamp(8px, 1vw, 14px);
 }
+
 
 .ai-response p,
 .ai-response li {
-    font-size: var(--fs-base);
+    font-size: clamp(13px, 1vw, 16px);
+
+    line-height: 1.9;
 }
 
-.chat-mode {
-    justify-content: flex-start;
-    padding-top: 40px;
+
+/* ---------- Input ---------- */
+
+.ai-layout .dashboard-input {
+    width: min(900px, 100%);
+
+    margin-inline: auto;
+
+    display: flex;
+    align-items: center;
+
+    gap: clamp(8px, 1vw, 12px);
+
+    padding: clamp(6px, 0.7vw, 10px);
+
+    background: var(--white);
+
+    border-radius: clamp(14px, 1.5vw, 20px);
+
+    box-shadow: 0 6px 18px rgba(0,0,0,.08);
 }
 
-.chat-mode .ai-input {
-    margin-top: auto;
-    margin-bottom: 20px;
+
+.ai-layout .dashboard-input input {
+    flex: 1;
+
+    min-width: 0;
+
+    height: clamp(42px, 3.2vw, 52px);
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    padding-inline: clamp(10px, 1.2vw, 16px);
+
+    font-family: inherit;
+
+    font-size: clamp(13px, 1vw, 16px);
 }
+
+
+.ai-layout .dashboard-input input::placeholder {
+    font-size: clamp(12px, 0.9vw, 15px);
+}
+
+
+/* ---------- Send Button ---------- */
 
 .send-btn {
-    width: 46px;
-    height: 46px;
+    flex: 0 0 auto;
+
+    width: clamp(38px, 3vw, 46px);
+    height: clamp(38px, 3vw, 46px);
+
     border: none;
+
     border-radius: 50%;
+
     background: var(--primary);
     color: var(--white);
+
     cursor: pointer;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
+    font-size: clamp(12px, 0.9vw, 15px);
+
+    transition: .3s;
 }
+
 
 .send-btn:hover {
     background: var(--primary-light);
 }
 
+
+/* ---------- AI Answer ---------- */
+
 .ai-answer {
-    width: min(850px,95%);
-    margin-top: 35px;
+    width: min(850px, 100%);
+
+    margin-inline: auto;
+
+    margin-top: clamp(20px, 2.5vw, 35px);
 }
+
 
 .ai-answer h2 {
-    font-size: var(--fs-xl);
+    font-size: clamp(20px, 1.8vw, 28px);
 }
 
+
 .ai-answer h3 {
-    font-size: var(--fs-lg);
+    font-size: clamp(17px, 1.4vw, 22px);
 }
+
 
 .ai-answer p,
 .ai-answer li {
-    font-size: var(--fs-base);
+    font-size: clamp(13px, 1vw, 16px);
+
+    line-height: 1.9;
+}
+
+
+/*======================================*
+* AI PAGE - SMALL SCREENS
+*=======================================*/
+
+@media (max-width: 768px) {
+
+    .ai-layout {
+        grid-template-columns: 1fr;
+
+        gap: clamp(12px, 3vw, 18px);
+
+        min-height: auto;
+    }
+
+
+    /* Sidebar becomes horizontal */
+
+    .chat-sidebar {
+        display: flex;
+
+        align-items: center;
+
+        gap: clamp(7px, 2vw, 12px);
+
+        padding: clamp(10px, 2vw, 14px);
+
+        overflow-x: auto;
+    }
+
+
+    .new-chat {
+        width: auto;
+
+        flex: 0 0 auto;
+
+        margin: 0;
+
+        padding-inline: clamp(12px, 3vw, 18px);
+    }
+
+
+    .chat-sidebar h4 {
+        display: none;
+    }
+
+
+    .chat-item {
+        flex: 0 0 auto;
+
+        margin: 0;
+
+        padding: clamp(8px, 2vw, 11px)
+                 clamp(10px, 3vw, 15px);
+    }
+
+
+    #ai-chat {
+        min-height: 50vh;
+    }
+
+
+    .ai-layout .dashboard-title {
+        font-size: clamp(19px, 5vw, 25px);
+    }
+
+
+    .ai-response {
+        padding: clamp(14px, 4vw, 20px);
+    }
+
+
+    .ai-layout .dashboard-input {
+        border-radius: clamp(12px, 3vw, 18px);
+    }
+
 }
 /*======================================
     NEW QUESTION PAGE
@@ -735,7 +971,7 @@ body {
 =======================================*/
 
 .content-area {
-    min-height: 900px;
+    min-height: 100px;
 }
 
 #dynamic-content {
@@ -1181,112 +1417,163 @@ img {
 }
 
 
-/*======================================
-    MOBILE MENU آماده برای آینده
-=======================================*/
 
-.mobile-menu {
-    display: none;
-}
+/*======================================*
+*RESPONSIVE*
+*=======================================*/
 
+/* =========================
+   Tablet / Laptop
+========================= */
 
-/*======================================
-    RESPONSIVE
-=======================================*/
+@media (max-width: 1366px) {
 
-
-@media(max-width:1200px) {
-
-    .main-layout {
-        grid-template-columns:220px 1fr;
-    }
-
-    .left-panel {
-        display:none;
+    .hero {
+        height: 60vh;
     }
 
     .hero-search {
-        width:80%;
+        width: 65%;
+    }
+
+    .main-layout {
+        grid-template-columns: 220px minmax(0, 1fr) 240px;
+        gap: 20px;
+        padding: 35px;
+    }
+
+    .nav-top {
+        padding: 0 30px;
+    }
+
+    .logo img {
+        height: 82px;
+        margin-top: 35px;
     }
 }
 
 
-@media(max-width:900px) {
+/* =========================
+   Smaller Laptop / Tablet
+========================= */
 
-    .nav-bottom {
-        display:none;
+@media (max-width: 1200px) {
+
+    .main-layout {
+        grid-template-columns: 180px minmax(0, 1fr) 180px;
+        gap: 15px;
+        padding: 30px;
     }
 
+    .hero-search {
+        width: 80%;
+    }
+}
+
+
+/* =========================
+   Tablet
+========================= */
+
+@media (max-width: 900px) {
+
+    /* .nav-bottom {
+        display: none;
+    } */
+
     .search-small {
-        display:none;
+        display: none;
     }
 
     .hero-content h1 {
-        font-size:var(--fs-xl);
+        font-size: var(--fs-xl);
     }
 
     .hero-content p {
-        font-size:var(--fs-md);
+        font-size: var(--fs-md);
     }
 
     .hero-search {
-        width:90%;
+        width: 90%;
     }
 
     .main-layout {
-        grid-template-columns:1fr;
-        padding:25px;
+        grid-template-columns: 160px minmax(0, 1fr) 160px;
+        gap: 10px;
+        padding: 20px;
     }
 
     .dashboard {
-        position:relative;
-        top:0;
-        margin-bottom:25px;
+        position: relative;
+        top: 0;
+        margin-bottom: 0;
+    }
+
+    .dashboard,
+    .content-area,
+    .left-panel {
+        min-width: 0;
     }
 }
 
 
-@media(max-width:600px) {
+/* =========================
+   Small screens
+========================= */
+
+@media (max-width: 600px) {
 
     .nav-top {
-        padding:15px;
+        padding: 15px;
     }
 
     .hero-content h1 {
-        font-size:var(--fs-xl);
+        font-size: var(--fs-xl);
     }
 
     .hero-content p {
-        font-size:var(--fs-base);
+        font-size: var(--fs-base);
     }
 
     .hero-search {
-        flex-direction:column;
-        border-radius:15px;
+        flex-direction: column;
+        border-radius: 15px;
     }
 
     .hero-search input {
-        width:100%;
+        width: 100%;
     }
 
     .hero-search button {
-        width:100%;
-        height:60px;
+        width: 100%;
+        height: 60px;
     }
 
     .expert-grid {
-        grid-template-columns:1fr;
+        grid-template-columns: 1fr;
     }
 
     .cards {
-        grid-template-columns:1fr;
+        grid-template-columns: 1fr;
     }
 
     .about-site {
-        padding:50px 25px;
+        padding: 50px 25px;
+    }
+
+    /* همچنان سه ستون */
+    .main-layout {
+        grid-template-columns: 140px minmax(0, 1fr) 140px;
+        gap: 8px;
+        padding: 10px;
+    }
+
+    .dashboard,
+    .content-area,
+    .left-panel {
+        min-width: 0;
     }
 }
-
 
 /*======================================
     SELECTION
@@ -1360,52 +1647,439 @@ img {
 }
 
 
-/*======================================
-    1366px
-=======================================*/
+/*======================================*
+* MOBILE DEFAULT
+*=======================================*/
 
-@media (max-width:1366px) {
-
-    .hero {
-        height:60vh;
-    }
-
-    .hero-search {
-        width:65%;
-    }
-
-    .main-layout {
-        padding:35px;
-        gap:20px;
-    }
-
-    .nav-top {
-        padding:0 30px;
-    }
-
-    .logo img {
-        height:82px;
-        margin-top:35px;
-    }
+/* این بخش‌ها در دسکتاپ مخفی هستند */
+.mobile-hero,
+.mobile-menu,
+.mobile-menu-overlay {
+    display: none;
 }
 
 
-@media (max-width:1100px) {
+/*======================================*
+* MOBILE
+*=======================================*/
+
+@media (max-width: 600px) {
+
+
+    /*====================================
+      DESKTOP ELEMENTS HIDDEN
+    ====================================*/
+
+    .hero {
+        height: auto;
+        min-height: 0;
+        background: none;
+    }
+
+    .hero-content {
+        display: none;
+    }
+
+    #navbar {
+        display: none;
+    }
+
+    .dashboard,
+    .left-panel,
+    .about-site {
+        display: none;
+    }
+
+
+    /*====================================
+      MOBILE HERO
+    ====================================*/
+
+    .mobile-hero {
+        display: flex;
+
+        position: fixed;
+
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 70px;
+
+        z-index: 10001;
+
+        background: #fff;
+
+        align-items: center;
+
+        box-shadow: 0 3px 15px rgba(0, 0, 0, .08);
+
+        direction: ltr;
+    }
+
+
+    /*------------------------------------
+      MENU BUTTON
+    ------------------------------------*/
+
+    .mobile-menu-button {
+        position: absolute;
+
+        left: 12px;
+        top: 50%;
+
+        transform: translateY(-50%);
+
+        width: 40px;
+        height: 40px;
+
+        border: none;
+
+        background: transparent;
+
+        color: var(--primary);
+
+        font-size: 32px;
+        line-height: 1;
+
+        padding: 0;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        cursor: pointer;
+
+        direction: ltr !important;
+    }
+
+
+    /*------------------------------------
+      LANGUAGE
+    ------------------------------------*/
+
+    .mobile-language {
+        position: absolute;
+
+        left: 60px;
+        top: 50%;
+
+        transform: translateY(-50%);
+
+        width: 48px;
+        min-width: 48px;
+        max-width: 48px;
+
+        height: 36px;
+
+        border: 1px solid var(--border);
+
+        border-radius: 9px;
+
+        background: #fff;
+
+        color: #333;
+
+        padding: 0 5px;
+
+        font-family: inherit;
+
+        font-size: var(--fs-xs);
+
+        box-sizing: border-box;
+
+        cursor: pointer;
+
+        direction: ltr !important;
+    }
+
+
+    /*------------------------------------
+      MOBILE LOGO
+    ------------------------------------*/
+
+    .mobile-hero-logo {
+        position: absolute;
+
+        left: 50%;
+        top: 50%;
+
+        transform: translate(-50%, -50%);
+
+        width: 120px;
+        height: 55px;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        direction: ltr !important;
+    }
+
+    .mobile-hero-logo img {
+        width: auto;
+
+        height: 48px;
+
+        max-width: 120px;
+
+        object-fit: contain;
+    }
+
+
+    /*------------------------------------
+      SEARCH
+    ------------------------------------*/
+
+    .mobile-hero-search {
+        position: absolute;
+
+        right: 12px;
+        top: 50%;
+
+        transform: translateY(-50%);
+
+        width: 40px;
+        height: 40px;
+
+        border: none;
+
+        background: transparent;
+
+        color: var(--primary);
+
+        font-size: 18px;
+
+        padding: 0;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        cursor: pointer;
+
+        direction: ltr !important;
+    }
+
+
+    /*====================================
+      MOBILE SIDE MENU
+    ====================================*/
+
+    .mobile-menu {
+        display: flex;
+
+        position: fixed;
+
+        top: 0;
+        left: 0;
+
+        width: 82%;
+        max-width: 340px;
+
+        height: 100vh;
+
+        background: #fff;
+
+        z-index: 10002;
+
+        flex-direction: column;
+
+        transform: translateX(-100%);
+
+        transition: transform .35s ease;
+
+        box-shadow: 10px 0 35px rgba(0, 0, 0, .18);
+
+        direction: rtl;
+    }
+
+    .mobile-menu.open {
+        transform: translateX(0);
+    }
+
+
+    /*====================================
+      MENU OVERLAY
+    ====================================*/
+
+    .mobile-menu-overlay {
+        display: block;
+
+        position: fixed;
+
+        inset: 0;
+
+        background: rgba(0, 0, 0, .45);
+
+        z-index: 10001;
+
+        opacity: 0;
+
+        visibility: hidden;
+
+        transition: .3s;
+    }
+
+    .mobile-menu-overlay.show {
+        opacity: 1;
+        visibility: visible;
+    }
+
+
+    /*====================================
+      MENU HEADER
+    ====================================*/
+
+    .mobile-menu-header {
+        height: 70px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        padding: 0 20px;
+
+        background: var(--primary);
+
+        color: #fff;
+
+        font-size: var(--fs-lg);
+
+        font-weight: 600;
+    }
+
+    .mobile-menu-header button {
+        width: 40px;
+        height: 40px;
+
+        border: none;
+
+        background: transparent;
+
+        color: #fff;
+
+        font-size: 32px;
+
+        line-height: 1;
+
+        cursor: pointer;
+    }
+
+
+    /*====================================
+      MENU ITEMS
+    ====================================*/
+
+    .mobile-menu-items {
+        padding: 20px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 10px;
+
+        overflow-y: auto;
+    }
+
+    .mobile-menu-btn {
+        width: 100%;
+
+        min-height: 52px;
+
+        border: none;
+
+        border-radius: 12px;
+
+        background: #f5f6f5;
+
+        color: #222;
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 14px;
+
+        padding: 0 18px;
+
+        font-family: inherit;
+
+        font-size: var(--fs-sm);
+
+        cursor: pointer;
+
+        text-align: right;
+
+        transition: .25s;
+    }
+
+    .mobile-menu-btn i {
+        width: 24px;
+
+        text-align: center;
+
+        color: var(--primary);
+    }
+
+    .mobile-menu-btn:hover,
+    .mobile-menu-btn.active {
+        background: var(--primary);
+
+        color: #fff;
+    }
+
+    .mobile-menu-btn:hover i,
+    .mobile-menu-btn.active i {
+        color: #fff;
+    }
+
+
+    /*====================================
+      MOBILE CONTENT
+    ====================================*/
 
     .main-layout {
-        grid-template-columns:220px 1fr;
+        display: block;
+
+        width: 100%;
+
+        padding: 80px 15px 15px;
+
+        box-sizing: border-box;
+
+        background: #f5f6f5;
     }
 
-    .hero-search {
-        width:75%;
+    .content-area {
+        width: 100%;
+
+        min-width: 0;
     }
+
+    #dynamic-content {
+        width: 100%;
+
+        box-sizing: border-box;
+
+        padding: 22px;
+
+        border-radius: 16px;
+    }
+
+
+    /*====================================
+      CARDS
+    ====================================*/
 
     .cards {
-        gap:16px;
+        grid-template-columns: 1fr;
     }
 
-    .about-site,
-    .experts {
-        padding:60px 40px;
-    }
 }
