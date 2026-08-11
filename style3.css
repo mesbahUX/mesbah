@@ -205,6 +205,24 @@ body {
     color: var(--primary);
 }
 
+.mobile-top-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 20px;
+}
+
+.mobile-top-icons a {
+    color: var(--primary);
+    font-size: 22px;
+    text-decoration: none;
+}
+
+.mobile-top-icons a:hover {
+    opacity: 0.7;
+}
+
 /* ===========================
    Search Small
 =========================== */
@@ -307,16 +325,40 @@ body {
     color: white;
 }
 
-.hero-content h1 {
+.mobile-home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    width: 100%;
+    min-height: calc(100dvh - 130px);
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, .60),
+            rgba(0, 0, 0, .60)
+        ),
+        url("pics/background1.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+.hero-content h1,
+.mobile-home h1 {
     font-size: var(--fs-xl);
     margin-top: 70px;
     font-weight: 700;
 }
 
-.hero-content p {
+.hero-content p,
+.mobile-home p {
     font-size: var(--fs-sm);
     margin-bottom: 45px;
     opacity: .9;
+    color: white;
 }
 
 /* ===========================
@@ -344,34 +386,45 @@ body {
 /* ===========================
    Hero Search
 =========================== */
-
 .hero-search {
     width: 50%;
     display: flex;
-    background: white;
-    border-radius: 50px;
-    overflow: hidden;
-    box-shadow: 0 15px 40px rgba(0,0,0,.25);
+    align-items: center;
+    gap: 12px;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
 }
+
 
 .hero-search input {
     flex: 1;
-    border: none;
-    outline: none;
     height: 68px;
     padding: 0 22px;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    background: white;
     font-size: var(--fs-base);
+    box-shadow: 0 15px 40px rgba(0,0,0,.25);
+    box-sizing: border-box;
 }
 
+
 .hero-search button {
-    width: 170px;
+    flex: 0 0 130px;
+    width: 130px;
+    height: 56px;
     border: none;
+    border-radius: 30px;
     background: var(--primary);
     color: white;
     font-size: var(--fs-base);
     cursor: pointer;
     transition: .3s;
+    box-shadow: 0 10px 25px rgba(0,0,0,.2);
 }
+
 
 .hero-search button:hover {
     background: var(--primary-light);
@@ -997,6 +1050,10 @@ body {
     font-size: var(--fs-base);
 }
 
+#dynamic-content .mobile-home p {
+    color: white;
+    font-size: var(--fs-sm);
+}
 
 /* کارت های وسط */
 
@@ -1346,10 +1403,10 @@ input:focus {
     transition: .35s;
 }
 
-.hero-search:hover {
+/* .hero-search:hover {
     transform: translateY(-3px);
     box-shadow: 0 25px 55px rgba(0,0,0,.25);
-}
+} */
 
 .logo img {
     transition: .3s;
@@ -1425,7 +1482,7 @@ img {
 /* =========================
    Tablet / Laptop
 ========================= */
-
+/* 
 @media (max-width: 1366px) {
 
     .hero {
@@ -1450,13 +1507,13 @@ img {
         height: 82px;
         margin-top: 35px;
     }
-}
+} */
 
 
 /* =========================
    Smaller Laptop / Tablet
 ========================= */
-
+/* 
 @media (max-width: 1200px) {
 
     .main-layout {
@@ -1468,19 +1525,14 @@ img {
     .hero-search {
         width: 80%;
     }
-}
+} */
 
 
 /* =========================
    Tablet
 ========================= */
-
+/* 
 @media (max-width: 900px) {
-
-    /* .nav-bottom {
-        display: none;
-    } */
-
     .search-small {
         display: none;
     }
@@ -1514,7 +1566,7 @@ img {
     .left-panel {
         min-width: 0;
     }
-}
+} */
 
 
 /* =========================
@@ -1536,17 +1588,28 @@ img {
     }
 
     .hero-search {
-        flex-direction: column;
-        border-radius: 15px;
+        width: calc(100% - 30px);
+        max-width: 500px;
+        margin: 0 auto;
+        gap: 10px;
+        box-sizing: border-box;
     }
 
     .hero-search input {
+        min-width: 0;
         width: 100%;
+        height: 55px;
+        padding: 0 18px;
+        font-size: var(--fs-base);
+        box-sizing: border-box;
     }
 
     .hero-search button {
-        width: 100%;
-        height: 60px;
+        flex: 0 0 100px;
+        width: 100px;
+        max-width: 100px;
+        height: 50px;
+        font-size: 14px;
     }
 
     .expert-grid {
@@ -1654,7 +1717,8 @@ img {
 /* این بخش‌ها در دسکتاپ مخفی هستند */
 .mobile-hero,
 .mobile-menu,
-.mobile-menu-overlay {
+.mobile-menu-overlay,
+.mobile-header {
     display: none;
 }
 
@@ -1664,8 +1728,18 @@ img {
 *=======================================*/
 
 @media (max-width: 600px) {
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
 
-
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
     /*====================================
       DESKTOP ELEMENTS HIDDEN
     ====================================*/
@@ -1673,7 +1747,7 @@ img {
     .hero {
         height: auto;
         min-height: 0;
-        background: none;
+        /* background: none; */
     }
 
     .hero-content {
@@ -1694,29 +1768,76 @@ img {
     /*====================================
       MOBILE HERO
     ====================================*/
-
-    .mobile-hero {
-        display: flex;
+    .mobile-header {
+        display: block;
 
         position: fixed;
 
         top: 0;
         left: 0;
+        right: 0;
 
         width: 100%;
-        height: 70px;
 
         z-index: 10001;
 
         background: #fff;
 
-        align-items: center;
-
         box-shadow: 0 3px 15px rgba(0, 0, 0, .08);
-
-        direction: ltr;
     }
 
+
+.mobile-hero {
+    display: flex;
+
+    position: relative;
+
+    width: 100%;
+    height: 70px;
+
+    align-items: center;
+
+    direction: ltr;
+}
+
+.nav-bottom {
+    height: 40px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 28px;
+
+    overflow-x: auto;
+
+    white-space: nowrap;
+
+    background: #fff;
+
+    direction: rtl;
+
+    scrollbar-width: none;
+}
+
+.nav-bottom::-webkit-scrollbar {
+    display: none;
+}
+
+
+.nav-bottom a {
+    text-decoration: none;
+    color: #333;
+    font-size: var(--fs-base);
+    transition: .3s;
+    flex-shrink: 0;
+}
+
+
+.nav-bottom a:hover {
+    color: var(--primary-light);
+}
 
     /*------------------------------------
       MENU BUTTON
@@ -1725,7 +1846,7 @@ img {
     .mobile-menu-button {
         position: absolute;
 
-        left: 12px;
+        right: 12px;
         top: 50%;
 
         transform: translateY(-50%);
@@ -1759,41 +1880,36 @@ img {
       LANGUAGE
     ------------------------------------*/
 
-    .mobile-language {
-        position: absolute;
+        .mobile-language {
+            position: absolute;
 
-        left: 60px;
-        top: 50%;
+            right: 60px;
+            top: 50%;
 
-        transform: translateY(-50%);
+            transform: translateY(-50%);
 
-        width: 48px;
-        min-width: 48px;
-        max-width: 48px;
+            width: 48px;
+            min-width: 48px;
+            max-width: 48px;
 
-        height: 36px;
+            height: 36px;
 
-        border: 1px solid var(--border);
+            border: 1px solid var(--border);
+            border-radius: 9px;
 
-        border-radius: 9px;
+            background: #fff;
+            color: #333;
 
-        background: #fff;
+            padding: 0 5px;
 
-        color: #333;
+            font-family: inherit;
+            font-size: var(--fs-xs);
 
-        padding: 0 5px;
+            box-sizing: border-box;
+            cursor: pointer;
 
-        font-family: inherit;
-
-        font-size: var(--fs-xs);
-
-        box-sizing: border-box;
-
-        cursor: pointer;
-
-        direction: ltr !important;
-    }
-
+            direction: ltr !important;
+        }
 
     /*------------------------------------
       MOBILE LOGO
@@ -1802,10 +1918,10 @@ img {
     .mobile-hero-logo {
         position: absolute;
 
-        left: 50%;
+        left: 12px;
         top: 50%;
 
-        transform: translate(-50%, -50%);
+        transform: translateY(-50%);
 
         width: 120px;
         height: 55px;
@@ -1829,58 +1945,22 @@ img {
     }
 
 
-    /*------------------------------------
-      SEARCH
-    ------------------------------------*/
-
-    .mobile-hero-search {
-        position: absolute;
-
-        right: 12px;
-        top: 50%;
-
-        transform: translateY(-50%);
-
-        width: 40px;
-        height: 40px;
-
-        border: none;
-
-        background: transparent;
-
-        color: var(--primary);
-
-        font-size: 18px;
-
-        padding: 0;
-
-        display: flex;
-
-        align-items: center;
-        justify-content: center;
-
-        cursor: pointer;
-
-        direction: ltr !important;
-    }
-
 
     /*====================================
       MOBILE SIDE MENU
     ====================================*/
-
     .mobile-menu {
         display: flex;
 
         position: fixed;
 
         top: 0;
-        left: 0;
+        right: 0;
 
-        width: 82%;
-        max-width: 340px;
+        width: min(82vw, 340px);
+        height: 100dvh;
 
-        height: 100vh;
+        max-width: 100vw;
 
         background: #fff;
 
@@ -1888,19 +1968,21 @@ img {
 
         flex-direction: column;
 
-        transform: translateX(-100%);
+        transform: translate3d(100%, 0, 0);
 
         transition: transform .35s ease;
 
-        box-shadow: 10px 0 35px rgba(0, 0, 0, .18);
+        box-shadow: -10px 0 35px rgba(0, 0, 0, .18);
 
         direction: rtl;
+
+        visibility: hidden;
     }
 
     .mobile-menu.open {
-        transform: translateX(0);
+        transform: translate3d(0, 0, 0);
+        visibility: visible;
     }
-
 
     /*====================================
       MENU OVERLAY
@@ -1918,15 +2000,17 @@ img {
         z-index: 10001;
 
         opacity: 0;
-
         visibility: hidden;
 
-        transition: .3s;
+        pointer-events: none;
+
+        transition: opacity .3s ease, visibility .3s ease;
     }
 
     .mobile-menu-overlay.show {
         opacity: 1;
         visibility: visible;
+        pointer-events: auto;
     }
 
 
@@ -2049,28 +2133,65 @@ img {
         display: block;
 
         width: 100%;
+        max-width: 100%;
+        min-width: 0;
 
-        padding: 80px 15px 15px;
+        padding: 110px 0 15px;
+
+        min-height: 70vh;
 
         box-sizing: border-box;
 
-        background: #f5f6f5;
+        background: var(--white);
+
+        overflow-x: hidden;
     }
 
     .content-area {
         width: 100%;
-
         min-width: 0;
     }
 
     #dynamic-content {
         width: 100%;
+        max-width: 100%;
+        min-width: 0;
+
+        min-height: 70vh;
 
         box-sizing: border-box;
 
         padding: 22px;
 
+        overflow-x: hidden;
+
         border-radius: 16px;
+
+        background: transparent;
+        border: none;
+        box-shadow: none;
+    }
+
+    .content-area:has(.mobile-home) {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    #dynamic-content:has(.mobile-home) {
+        width: 100%;
+        max-width: none;
+        min-width: 0;
+
+        min-height: 0;
+
+        padding: 0;
+        margin: 0;
+
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        background: transparent;
     }
 
 
