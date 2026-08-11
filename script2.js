@@ -18,7 +18,7 @@ function showProtectedContent() {
 function openProtectedPage(event, targetPage) {
     event.preventDefault();
 
-    const correctPassword = "";
+    const correctPassword = "1234";
     const enteredPassword = prompt("لطفاً رمز عبور را وارد کنید:");
 
     if (enteredPassword === correctPassword) {
@@ -1041,7 +1041,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
             if (
                 passwordInput &&
-                passwordInput.value === ""
+                passwordInput.value === "1234"
             ) {
 
                 showProtectedContent();
