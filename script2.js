@@ -18,7 +18,7 @@ function showProtectedContent() {
 function openProtectedPage(event, targetPage) {
     event.preventDefault();
 
-    const correctPassword = "1234";
+    const correctPassword = "";
     const enteredPassword = prompt("لطفاً رمز عبور را وارد کنید:");
 
     if (enteredPassword === correctPassword) {
@@ -299,90 +299,47 @@ function loadPage(page) {
 
             content.innerHTML = `
 
-<h2>
+            <div class="mobile-home">
 
-خانه
+                <h1>
+                    پاسخ به شبهات مذهبی
+                </h1>
 
-</h2>
+                <p>
+                    جستجو در هزاران سوال، پاسخ و منبع معتبر
+                </p>
 
-<p>
+                <div class="hero-search">
 
-به سامانه مصباح خوش آمدید.
+                    <input
+                        type="text"
+                        placeholder="سوال یا موضوع مورد نظر را وارد کنید..."
+                    >
 
-</p>
+                    <button>
+                        جستجو
+                    </button>
 
-<p>
+                </div>
 
-از طریق منوی بالای صفحه سمت چپ می توانید به امکانات مختلف سایت دسترسی داشته باشید
+                <div class="hero-links">
 
-</p>
-<p>
+                    <a href="#" onclick="openDashboard('advanced')">
+                        جستجوی پیشرفته
+                    </a>
 
-برخی از امکانات سایت عبارتند از
-</p>
+                    <a href="#" onclick="openDashboard('ai')">
+                        هوش مصنوعی
+                    </a>
 
-<div class="cards">
+                    <a href="#" onclick="openDashboard('new')">
+                        ارسال شبهه جدید
+                    </a>
 
-<div class="card" onclick="openDashboard('search')">
+                </div>
 
-<h3>
+            </div>
 
-جستجو
-
-</h3>
-
-<p>
-موضوع، کلیدواژه یا عبارت مربوط به شبهه را وارد و تنها با یک کلیک بهترین پاسخ برای آن را پیدا کنید.
-</p>
-
-</div>
-
-<div class="card" onclick="openDashboard('advanced')">
-
-<h3>
-
-جستجوی پیشرفته
-
-</h3>
-
-<p>
-برای پیدا کردن دقیق‌تر مطالب، جستجو را با فیلترهای پیشرفته محدود کنید.
-</p>
-
-</div>
-
-<div class="card" onclick="openDashboard('ai')">
-
-<h3>
-
-هوش مصنوعی
-
-</h3>
-
-<p>
-
-هوش مصنوعی مصباح با دریافت متن شبهه، استخراج کلید واژه ها و جستجو در آرشیو را برای شما انجام می دهد
-
-</p>
-
-</div>
-
-<div class="card" onclick="openDashboard('new')">
-
-<h3>
-
-ارسال شبهه جدید
-
-</h3>
-
-<p>
-
-در صورت پیدا نکردن جواب پرسش خود یا تمایل به ارسال شبهه جدید برای ما، از این قسمت با ما در ارتباط باشید
-</p>
-
-</div>
-
-</div>
 `;
 
             break;
@@ -1084,7 +1041,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
             if (
                 passwordInput &&
-                passwordInput.value === "1234"
+                passwordInput.value === ""
             ) {
 
                 showProtectedContent();
@@ -1462,4 +1419,3 @@ style.textContent = `
 `;
 
 document.head.appendChild(style);
-
